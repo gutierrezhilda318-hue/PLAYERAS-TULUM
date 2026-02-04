@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familia Style | Playeras para Todos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .badge-count {
+            top: -8px;
+            right: -8px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header / Navbar -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold text-indigo-600 tracking-tight flex items-center gap-2">
+            <i class="fas fa-tshirt"></i> FAMILIA STYLE
+        </div>
+        
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="#" onclick="filterProducts('todas')" class="hover:text-indigo-600 transition">Todas</a>
+            <a href="#" onclick="filterProducts('hombre')" class="hover:text-indigo-600 transition">Hombres</a>
+            <a href="#" onclick="filterProducts('mujer')" class="hover:text-indigo-600 transition">Mujeres</a>
+            <a href="#" onclick="filterProducts('niños')" class="hover:text-indigo-600 transition">Niños</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <button onclick="toggleCart()" class="relative p-2 text-gray-600 hover:text-indigo-600 transition">
+                <i class="fas fa-shopping-cart text-xl"></i>
+                <span id="cart-count" class="badge-count absolute bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-indigo-900 h-[400px] flex items-center justify-center text-white text-center px-4 overflow-hidden">
+        <div class="z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Moda Casual para Toda la Familia</h1>
+            <p class="text-lg md:text-xl opacity-90 mb-8">Calidad premium, diseños únicos y comodidad absoluta.</p>
+            <a href="#productos" class="bg-white text-indigo-900 px-8 py-3 rounded-full font-bold hover:bg-indigo-100 transition shadow-lg">Ver Colección</a>
+        </div>
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')] bg-cover bg-center"></div>
+    </header>
+
+    <!-- Products Grid -->
+    <main id="productos" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+            <h2 id="category-title" class="text-3xl font-bold text-gray-900">Nuestras Playeras</h2>
+            <div class="mt-4 md:mt-0 flex gap-2">
+                <span class="text-sm font-medium text-gray-500">Filtrar por:</span>
+                <button onclick="filterProducts('todas')" class="px-3 py-1 bg-gray-200 rounded-md text-sm hover:bg-indigo-500 hover:text-white transition">Todas</button>
+                <button onclick="filterProducts('hombre')" class="px-3 py-1 bg-gray-200 rounded-md text-sm hover:bg-indigo-500 hover:text-white transition">Hombres</button>
+                <button onclick="filterProducts('mujer')" class="px-3 py-1 bg-gray-200 rounded-md text-sm hover:bg-indigo-500 hover:text-white transition">Mujeres</button>
+                <button onclick="filterProducts('niños')" class="px-3 py-1 bg-gray-200 rounded-md text-sm hover:bg-indigo-500 hover:text-white transition">Niños</button>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Los productos se cargan dinámicamente aquí -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Familia Style</h3>
+                <p class="text-gray-400">Vistiendo los mejores momentos de tu familia con estilo y calidad desde 2024.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Enlaces</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">Sobre nosotros</a></li>
+                    <li><a href="#" class="hover:text-white">Política de envíos</a></li>
+                    <li><a href="#" class="hover:text-white">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                <div class="flex">
+                    <input type="email" placeholder="Tu email" class="px-4 py-2 rounded-l-md w-full text-gray-900 outline-none">
+                    <button class="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700">Unirse</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+            &copy; 2026 Familia Style S.A. de C.V. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-[100] cart-sidebar flex flex-col">
+        <div class="p-6 border-b flex justify-between items-center bg-indigo-600 text-white">
+            <h3 class="text-xl font-bold">Tu Carrito</h3>
+            <button onclick="toggleCart()" class="text-2xl">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <!-- Items del carrito -->
+        </div>
+        <div class="p-6 border-t bg-gray-50">
+            <div class="flex justify-between text-xl font-bold mb-4">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition">
+                Finalizar Compra
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity">
+        Producto añadido al carrito
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, name: "Playera Minimalista Navy", price: 299, category: "hombre", img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" },
+            { id: 2, name: "Vestido Playera Floral", price: 349, category: "mujer", img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80" },
+            { id: 3, name: "Playera Dino Aventura", price: 199, category: "niños", img: "https://images.unsplash.com/photo-1519235106638-30cc49b4f92d?auto=format&fit=crop&w=800&q=80" },
+            { id: 4, name: "Basic White Premium", price: 250, category: "hombre", img: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80" },
+            { id: 5, name: "Pastel Dream Pink", price: 280, category: "mujer", img: "https://images.unsplash.com/photo-1554568218-0f1715e72254?auto=format&fit=crop&w=800&q=80" },
+            { id: 6, name: "Súper Héroe Kid", price: 220, category: "niños", img: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=800&q=80" },
+            { id: 7, name: "Henley Casual Gris", price: 320, category: "hombre", img: "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=800&q=80" },
+            { id: 8, name: "Oversize Urbano", price: 380, category: "mujer", img: "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=800&q=80" }
+        ];
+
+        let cart = [];
+
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            items.forEach(product => {
+                grid.innerHTML += `
+                    <div class="product-card bg-white rounded-xl shadow-sm overflow-hidden border hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden h-64 bg-gray-200">
+                            <img src="${product.img}" alt="${product.name}" class="product-image w-full h-full object-cover transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-bold uppercase text-indigo-600 shadow-sm">${product.category}</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg mb-1 truncate">${product.name}</h3>
+                            <p class="text-indigo-600 font-bold text-xl mb-4">$${product.price.toFixed(2)}</p>
+                            <button onclick="addToCart(${product.id})" class="w-full bg-gray-900 text-white py-2 rounded-lg hover:bg-indigo-600 transition flex items-center justify-center gap-2">
+                                <i class="fas fa-plus text-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterProducts(category) {
+            const filtered = category === 'todas' ? products : products.filter(p => p.category === category);
+            renderProducts(filtered);
+            document.getElementById('category-title').innerText = category === 'todas' ? 'Nuestras Playeras' : `Colección ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            showToast();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                cartItems.innerHTML += `
+                    <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-md">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-sm truncate">${item.name}</h4>
+                            <p class="text-indigo-600 font-bold">$${item.price}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-gray-400 hover:text-red-500">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            cartCount.innerText = cart.length;
+            cartTotal.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                alert("¡Tu carrito está vacío!");
+                return;
+            }
+            alert("¡Gracias por tu compra! Redirigiendo a pasarela de pago...");
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // Inicializar
+        renderProducts(products);
+    </script>
+</body>
+</html>1    ``  1q      q43
